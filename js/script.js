@@ -59,7 +59,81 @@ function setupAccordion() {
         }
     });
 }
-window.addEventListener('DOMContentLoaded', setupAccordion);
+
+function setupServiceCategoryDropdowns() {
+    const container = document.getElementById('servicesGrid');
+    if (!container || container.querySelector('.service-category-group')) return;
+
+    const groups = [];
+    const children = Array.from(container.children);
+    let currentGroup = null;
+
+    const createGroup = (title) => {
+        const group = document.createElement('div');
+        group.className = 'service-category-group';
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'service-category-toggle';
+        button.setAttribute('aria-expanded', 'false');
+        button.innerHTML = `<span>${title}</span><i class="fas fa-chevron-down"></i>`;
+
+        const panel = document.createElement('div');
+        panel.className = 'service-category-panel';
+
+        button.addEventListener('click', () => {
+            const isOpen = button.getAttribute('aria-expanded') === 'true';
+            const parent = button.closest('.services-checkbox-grid');
+            const activeGroup = parent ? parent.querySelector('.service-category-group.active') : null;
+
+            if (activeGroup && activeGroup !== group) {
+                const activeButton = activeGroup.querySelector('.service-category-toggle');
+                const activePanel = activeGroup.querySelector('.service-category-panel');
+                activeButton.setAttribute('aria-expanded', 'false');
+                activeGroup.classList.remove('active');
+                activePanel.style.maxHeight = '0px';
+            }
+
+            const shouldOpen = !isOpen;
+            button.setAttribute('aria-expanded', String(shouldOpen));
+            group.classList.toggle('active', shouldOpen);
+
+            if (shouldOpen) {
+                panel.style.maxHeight = '0px';
+                requestAnimationFrame(() => {
+                    panel.style.maxHeight = `${panel.scrollHeight + 24}px`;
+                });
+            } else {
+                panel.style.maxHeight = '0px';
+            }
+        });
+
+        group.appendChild(button);
+        group.appendChild(panel);
+        return { group, panel };
+    };
+
+    children.forEach(child => {
+        if (child.tagName === 'H4' && child.classList.contains('service-category')) {
+            if (currentGroup) groups.push(currentGroup);
+            currentGroup = createGroup(child.textContent.trim());
+        } else if (currentGroup) {
+            currentGroup.panel.appendChild(child);
+        }
+    });
+
+    if (currentGroup) groups.push(currentGroup);
+
+    if (groups.length === 0) return;
+
+    container.innerHTML = '';
+    groups.forEach(({ group }) => container.appendChild(group));
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    setupAccordion();
+    setupServiceCategoryDropdowns();
+});
 
 function calculateEstimatedTotal() {
     const checkboxes = document.querySelectorAll('input[name="services"]:checked');
@@ -138,52 +212,36 @@ function formatPhone(phoneInput) {
 // ============================================
 function filterServices() {
     const input = document.getElementById('serviceSearch');
-    const filter = input.value.toLowerCase();
     const grid = document.getElementById('servicesGrid');
+    if (!input || !grid) return;
 
-    // Pega todos os elementos dentro do grid (os <h4> de categoria e os <label> dos serviços)
-    const items = grid.children;
-    let currentCategory = null;
-    let categoryHasVisibleItems = false;
+    const filter = input.value.toLowerCase().trim();
+    const groups = grid.querySelectorAll('.service-category-group');
 
-    for (let i = 0; i < items.length; i++) {
-        const item = items[i];
+    groups.forEach(group => {
+        const labels = Array.from(group.querySelectorAll('label'));
+        const visibleLabels = labels.filter(label => label.textContent.toLowerCase().includes(filter));
+        const panel = group.querySelector('.service-category-panel');
 
-        if (item.tagName === 'H4') {
-            // Se for o título de uma categoria, verifica se a anterior ficou vazia e esconde
-            if (currentCategory && !categoryHasVisibleItems) {
-                currentCategory.style.display = "none";
-            }
-
-            // Inicia uma nova categoria
-            currentCategory = item;
-            categoryHasVisibleItems = false;
-            item.style.display = "none"; // Esconde por padrão até achar um serviço correspondente
-
-        } else if (item.tagName === 'LABEL') {
-            // Se for o serviço, verifica se o texto corresponde à pesquisa
-            const text = item.textContent || item.innerText;
-
-            if (text.toLowerCase().indexOf(filter) > -1) {
-                item.style.display = "flex"; // Mostra o serviço (usando flex para manter o estilo do checkbox)
-                categoryHasVisibleItems = true;
-
-                // Se achou um serviço, mostra a categoria dele
-                if (currentCategory) {
-                    currentCategory.style.display = "block";
-                }
-            } else {
-                item.style.display = "none"; // Esconde o serviço
-            }
+        if (!filter) {
+            group.style.display = 'block';
+            labels.forEach(label => label.style.display = 'flex');
+            group.classList.remove('active');
+            if (panel) panel.style.maxHeight = '0px';
+            return;
         }
-    }
 
-    // Tratamento para esconder/mostrar a última categoria da lista
-    if (currentCategory && !categoryHasVisibleItems) {
-        currentCategory.style.display = "none";
-    } else if (currentCategory && categoryHasVisibleItems) {
-        currentCategory.style.display = "block";
-    }
+        if (visibleLabels.length > 0) {
+            group.style.display = 'block';
+            labels.forEach(label => {
+                label.style.display = visibleLabels.includes(label) ? 'flex' : 'none';
+            });
+            group.classList.add('active');
+            if (panel) panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+            group.style.display = 'none';
+        }
+    });
 }
 
 // ============================================

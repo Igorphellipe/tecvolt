@@ -892,11 +892,64 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    max-height: 180px;
-    overflow-y: auto;
     padding-right: 5px;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
+    overflow: visible;
+}
+
+.service-category-group {
+    border: 1px solid rgba(0, 61, 122, 0.12);
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+    box-shadow: 0 2px 8px rgba(0, 61, 122, 0.05);
+}
+
+.service-category-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    border: none;
+    background: linear-gradient(90deg, #f2f9ff 0%, #eef7ff 100%);
+    color: var(--color-primary);
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.service-category-toggle:hover {
+    background: linear-gradient(90deg, #e8f5ff 0%, #dff2ff 100%);
+}
+
+.service-category-group.active .service-category-toggle {
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: #ffffff;
+}
+
+.service-category-toggle i {
+    transition: transform 0.3s ease;
+    color: var(--color-secondary);
+}
+
+.service-category-group.active .service-category-toggle i {
+    transform: rotate(180deg);
+    color: #ffffff;
+}
+
+.service-category-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 0.9rem;
+    will-change: max-height;
+}
+
+.service-category-group.active .service-category-panel {
+    padding: 0.6rem 0.9rem 0.9rem;
 }
 
 .services-checkbox-grid label {
@@ -907,6 +960,13 @@ body {
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
+    padding: 0.4rem 0;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.services-checkbox-grid label:hover {
+    background-color: rgba(0, 191, 255, 0.08);
 }
 
 /* Estilos da barra de pesquisa de serviços */
