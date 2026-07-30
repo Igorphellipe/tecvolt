@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <!-- Meta Tags - SEO e Compatibilidade -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TecVolt - Serviços Elétricos Profissionais com Segurança, Qualidade e Garantia. Manutenção residencial, comercial e industrial.">
-    <meta name="keywords" content="serviços elétricos, manutenção elétrica, instalação elétrica, quadro elétrico, segurança elétrica">
+    <meta name="description"
+        content="TecVolt - Serviços Elétricos Profissionais com Segurança, Qualidade e Garantia. Manutenção residencial, comercial e industrial.">
+    <meta name="keywords"
+        content="serviços elétricos, manutenção elétrica, instalação elétrica, quadro elétrico, segurança elétrica">
     <meta name="author" content="TecVolt">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="TecVolt - Serviços Elétricos Profissionais">
-    <meta property="og:description" content="Confie nos profissionais qualificados da TecVolt para seus serviços elétricos.">
+    <meta property="og:description"
+        content="Confie nos profissionais qualificados da TecVolt para seus serviços elétricos.">
     <meta property="og:type" content="website">
 
     <link rel="icon" href="assets/tecvolt-16x16.png" type="image/png">
-    
+
     <title>TecVolt - Serviços Elétricos Profissionais | Manutenção e Instalação</title>
-    
+
     <!-- Frameworks e Bibliotecas -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-    
+
     <!-- CSS Customizado -->
-<link rel="stylesheet" href="css/styles.css">
-    
+    <link rel="stylesheet" href="css/styles.css">
+
 </head>
+
 <body>
     <!-- ============================================
          NAVBAR - Navegação fixa no topo
@@ -43,7 +48,8 @@
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#manutencao">Manutenção</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><button class="contact-btn" onclick="openContactModal()"> <i class="fas fa-envelope"></i> Contato </button></li>
+            <li><button class="contact-btn" onclick="openContactModal()"> <i class="fas fa-envelope"></i> Contato
+                </button></li>
         </ul>
 
 
@@ -63,13 +69,13 @@
             <h1>Serviços Elétricos Profissionais com Segurança e Qualidade</h1>
             <p>Confie nos especialistas da TecVolt para manutenção, instalação e conformidade técnica</p>
             <div class="cta-group">
-                <a href="https://wa.me/5561999999999?text=Olá%20TecVolt!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                <a href="https://wa.me/5561999999999?text=Olá%20TecVolt!%20Gostaria%20de%20solicitar%20um%20orçamento."
                     class="btn-primary" target="_blank">
                     <i class="fab fa-whatsapp"></i> Solicitar Orçamento no WhatsApp
                 </a>
                 <button class="btn-secondary" onclick="openContactModal()">
                     <i class="fas fa-envelope"></i> Enviar Mensagem
-                 </button>
+                </button>
             </div>
         </div>
     </section>
@@ -81,16 +87,16 @@
         <div class="about-content">
             <h2>Quem Somos</h2>
             <p>
-                A <strong>TecVolt</strong> é uma empresa especializada em soluções elétricas completas para 
-                residências, comercial e indústria. Com profissionais qualificados e certificados, 
+                A <strong>TecVolt</strong> é uma empresa especializada em soluções elétricas completas para
+                residências, comercial e indústria. Com profissionais qualificados e certificados,
                 garantimos segurança, qualidade e conformidade técnica em todos os projetos.
             </p>
             <p>
-                Nossos valores são fundados em <strong>transparência, responsabilidade e excelência</strong>. 
+                Nossos valores são fundados em <strong>transparência, responsabilidade e excelência</strong>.
                 Utilizamos as melhores práticas do mercado e respeitamos todas as normas técnicas brasileiras.
             </p>
             <p>
-                Há mais de uma década, confiamos na satisfação de nossos clientes através de 
+                Há mais de uma década, confiamos na satisfação de nossos clientes através de
                 <strong>trabalhos bem executados</strong> e <strong>atendimento excepcional</strong>.
             </p>
         </div>
@@ -110,7 +116,7 @@
             <div class="differential-card" data-aos="flip-left">
                 <i class="fas fa-user-tie"></i>
                 <h3>Profissionais Qualificados</h3>
-                <p>Equipe certificada  atualizada com as normas técnicas mais recentes do mercado</p>
+                <p>Equipe certificada atualizada com as normas técnicas mais recentes do mercado</p>
             </div>
 
             <!-- Card 2: Segurança -->
@@ -213,14 +219,16 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeServiceModal()">&times;</button>
             <h2 class="modal-title" id="modalServiceTitle">Título do Serviço</h2>
-            <p  class="modal-description" id="modalServiceDesc">Descrição do serviço será exibida aqui com detalhes técnicos e informações importantes.</p>
-            
+            <p class="modal-description" id="modalServiceDesc">Descrição do serviço será exibida aqui com detalhes
+                técnicos e informações importantes.</p>
+
             <!-- Galeria de imagens padrão -->
             <div class="modal-gallery" id="modalGallery">
-               
+
             </div>
 
-            <button class="cta-button" onclick="openContactModal(); closeServiceModal();" style="width: 100%; margin-top: 1rem;">
+            <button class="cta-button" onclick="openContactModal(); closeServiceModal();"
+                style="width: 100%; margin-top: 1rem;">
                 Solicitar Orçamento
             </button>
         </div>
@@ -231,7 +239,7 @@
          ============================================ -->
     <section class="maintenance-section" id="manutencao">
         <h2 class="section-title" data-aos="fade-down">Guia de Manutenção Elétrica</h2>
-        
+
         <!-- Accordion com tópicos técnicos -->
         <div class="accordion">
             <!-- Item 1: Quando realizar manutenção -->
@@ -258,19 +266,22 @@
                     <i class="fas fa-chevron-down accordion-icon"></i>
                 </div>
                 <div class="accordion-body">
-                    <p><strong>Disjuntores:</strong> Interruptores automáticos que desligam a corrente em caso de sobrecarga ou curto-circuito.</p>
+                    <p><strong>Disjuntores:</strong> Interruptores automáticos que desligam a corrente em caso de
+                        sobrecarga ou curto-circuito.</p>
                     <ul>
                         <li>Protegem a instalação de danos</li>
                         <li>Evitam incêndios elétricos</li>
                         <li>Dimensionamento correto é essencial</li>
                     </ul>
-                    <p><strong>DR (Dispositivo Residual):</strong> Protege contra choques elétricos e detecta vazamentos de corrente.</p>
+                    <p><strong>DR (Dispositivo Residual):</strong> Protege contra choques elétricos e detecta vazamentos
+                        de corrente.</p>
                     <ul>
                         <li>Obrigatório em circuitos de banheiro e cozinha</li>
                         <li>Sensibilidade: 30mA para ambientes úmidos</li>
                         <li>Testa periodicamente o botão de teste</li>
                     </ul>
-                    <p><strong>DPS (Dispositivo de Proteção contra Surtos):</strong> Protege contra picos de tensão causados por descargas atmosféricas.</p>
+                    <p><strong>DPS (Dispositivo de Proteção contra Surtos):</strong> Protege contra picos de tensão
+                        causados por descargas atmosféricas.</p>
                     <ul>
                         <li>Protege eletrodomésticos caros</li>
                         <li>Instalação na entrada da energização</li>
@@ -316,7 +327,8 @@
                     <ul>
                         <li><strong>Circuito de Iluminação:</strong> Disjuntor 10A com fio 2.5mm²</li>
                         <li><strong>Circuito de Tomadas Gerais:</strong> Disjuntor 20A com fio 2.5mm² a 4mm²</li>
-                        <li><strong>Cozinha:</strong> Disjuntor 32A com fio 4mm² a 6mm² (eletrodomésticos até 8000W)</li>
+                        <li><strong>Cozinha:</strong> Disjuntor 32A com fio 4mm² a 6mm² (eletrodomésticos até 8000W)
+                        </li>
                         <li><strong>Chuveiro:</strong> Disjuntor 40A a 50A com fio 6mm² a 10mm² (até 15.000W)</li>
                         <li><strong>Ar-condicionado:</strong> Disjuntor exclusivo conforme potência do equipamento</li>
                         <li><strong>Circuito DR:</strong> Mínimo 30mA em banheiro e áreas úmidas</li>
@@ -329,16 +341,22 @@
         <!-- Cards informativos de manutenção -->
         <div class="maintenance-grid">
             <div class="maintenance-card" data-aos="fade-up">
-                <h4><i class="fas fa-check" style="color: var(--color-secondary); margin-right: 0.5rem;"></i>Manutenção Preventiva</h4>
-                <p>Realizada periodicamente para evitar problemas. Inclui limpeza, inspeção visual e testes de funcionamento dos dispositivos de segurança.</p>
+                <h4><i class="fas fa-check" style="color: var(--color-secondary); margin-right: 0.5rem;"></i>Manutenção
+                    Preventiva</h4>
+                <p>Realizada periodicamente para evitar problemas. Inclui limpeza, inspeção visual e testes de
+                    funcionamento dos dispositivos de segurança.</p>
             </div>
             <div class="maintenance-card" data-aos="fade-up" data-aos-delay="100">
-                <h4><i class="fas fa-tools" style="color: var(--color-secondary); margin-right: 0.5rem;"></i>Manutenção Corretiva</h4>
-                <p>Realizada quando problemas surgem. Diagnóstico, reparo ou substituição de componentes danificados ou defeituosos.</p>
+                <h4><i class="fas fa-tools" style="color: var(--color-secondary); margin-right: 0.5rem;"></i>Manutenção
+                    Corretiva</h4>
+                <p>Realizada quando problemas surgem. Diagnóstico, reparo ou substituição de componentes danificados ou
+                    defeituosos.</p>
             </div>
             <div class="maintenance-card" data-aos="fade-up" data-aos-delay="200">
-                <h4><i class="fas fa-certificate" style="color: var(--color-secondary); margin-right: 0.5rem;"></i>Inspeção Técnica</h4>
-                <p>Avaliação completa da instalação elétrica com laudo técnico. Identifica não-conformidades e pontos de risco de segurança.</p>
+                <h4><i class="fas fa-certificate"
+                        style="color: var(--color-secondary); margin-right: 0.5rem;"></i>Inspeção Técnica</h4>
+                <p>Avaliação completa da instalação elétrica com laudo técnico. Identifica não-conformidades e pontos de
+                    risco de segurança.</p>
             </div>
         </div>
     </section>
@@ -351,12 +369,13 @@
         <div class="faq-container">
             <!-- FAQ 1 -->
             <div class="faq-item">
-                <div class="faq-question" >
+                <div class="faq-question">
                     <span>Qual é o tempo de resposta para um orçamento?</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    Respondemos todas as solicitações de orçamento em até 24 horas. Para emergências, oferecemos atendimento prioritário através do WhatsApp.
+                    Respondemos todas as solicitações de orçamento em até 24 horas. Para emergências, oferecemos
+                    atendimento prioritário através do WhatsApp.
                 </div>
             </div>
 
@@ -367,7 +386,8 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    Sim! Garantimos todos os serviços realizados. Oferecemos suporte técnico continuado e correções gratuitas em caso de problemas relacionados ao trabalho executado no prazo de 1 ano.
+                    Sim! Garantimos todos os serviços realizados. Oferecemos suporte técnico continuado e correções
+                    gratuitas em caso de problemas relacionados ao trabalho executado no prazo de 1 ano.
                 </div>
             </div>
 
@@ -378,7 +398,9 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    A manutenção preventiva inclui inspeção visual da instalação, teste dos dispositivos de segurança (DR, disjuntores, DPS), limpeza do quadro elétrico e geração de relatório técnico. Recomendamos realizá-la a cada 2-3 anos para residências.
+                    A manutenção preventiva inclui inspeção visual da instalação, teste dos dispositivos de segurança
+                    (DR, disjuntores, DPS), limpeza do quadro elétrico e geração de relatório técnico. Recomendamos
+                    realizá-la a cada 2-3 anos para residências.
                 </div>
             </div>
 
@@ -389,7 +411,9 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    Nossa equipe é altamente qualificada, certificada e atualizada com as normas técnicas mais recentes. Oferecemos transparência total, segurança, agilidade no atendimento e garantia em todos os serviços. Seus projetos são executados com excelência e confiança.
+                    Nossa equipe é altamente qualificada, certificada e atualizada com as normas técnicas mais recentes.
+                    Oferecemos transparência total, segurança, agilidade no atendimento e garantia em todos os serviços.
+                    Seus projetos são executados com excelência e confiança.
                 </div>
             </div>
 
@@ -400,7 +424,9 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    Sim! Oferecemos atendimento de emergência 24/7 para situações críticas. Entre em contato via WhatsApp para solicitar assistência imediata. Taxas adicionais podem aplicar em atendimentos noturnos ou finais de semana.
+                    Sim! Oferecemos atendimento de emergência 24/7 para situações críticas. Entre em contato via
+                    WhatsApp para solicitar assistência imediata. Taxas adicionais podem aplicar em atendimentos
+                    noturnos ou finais de semana.
                 </div>
             </div>
         </div>
@@ -414,7 +440,7 @@
             <button class="modal-close" onclick="closeContactModal()">&times;</button>
             <h2 class="modal-title">Entre em Contato</h2>
             <p style="color: var(--color-text-light); margin-bottom: 1.5rem;">
-                Preencha o formulário abaixo e nossa equipe entrará em contato em breve. 
+                Preencha o formulário abaixo e nossa equipe entrará em contato em breve.
                 Para atendimento imediato, utilize nosso WhatsApp.
             </p>
 
@@ -422,71 +448,290 @@
                 <!-- Campo Nome -->
                 <div class="form-group">
                     <label for="name">Nome Completo *</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        placeholder="Seu nome completo" 
-                        required
-                    >
+                    <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
                 </div>
 
                 <!-- Campo Telefone -->
                 <div class="form-group">
                     <label for="phone">Telefone/WhatsApp *</label>
-                    <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone" 
-                        placeholder="(61) 99999-9999" 
-                        required
-                        pattern="[0-9\-\+\(\) ]+"
-                    >
+                    <input type="tel" id="phone" name="phone" placeholder="(61) 99999-9999" required
+                        pattern="[0-9\-\+\(\) ]+">
                 </div>
 
                 <!-- Campo Email -->
                 <div class="form-group">
                     <label for="email">E-mail *</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="seu.email@example.com" 
-                        required
-                    >
+                    <input type="email" id="email" name="email" placeholder="seu.email@example.com" required>
+                </div>
+
+                <!-- Campo de Serviços -->
+                <div class="form-group service-selector-container">
+                    <label>Selecione o(s) Serviço(s) Desejados:</label>
+                    <input type="text" id="serviceSearch" class="service-search-input" placeholder="Pesquisar serviço..." onkeyup="filterServices()">
+                    <div class="services-checkbox-grid" id="servicesGrid">
+
+                        <!-- Iluminação -->
+                        <h4 class="service-category">Iluminação</h4>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Interruptor Simples ou Pulsador" data-price="68.00"> Instalação de
+                            Interruptor Simples ou Pulsador</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Interruptor Tree-Way ou Four Way" data-price="80.00"> Instalação de
+                            Interruptor Tree-Way ou Four Way</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Interruptor Duplo ou Bipolar"
+                                data-price="80.00"> Instalação de Interruptor Duplo ou Bipolar</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Interruptor e Tomada (Juntos)" data-price="80.00"> Instalação de
+                            Interruptor e Tomada (Juntos)</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Arandela, Pendente ou Spot Comum" data-price="93.00"> Instalação de
+                            Arandela, Pendente ou Spot Comum</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Lâmpada Fluorescente ou LED (Tubular)" data-price="93.00">
+                            Instalação de Lâmpada Fluorescente ou LED (Tubular)</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Lustres Simples ou Luminária"
+                                data-price="120.00"> Instalação de Lustres Simples ou Luminária</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Lustres Grandes ou Luminária"
+                                data-price="180.00"> Instalação de Lustres Grandes ou Luminária</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Refletor de Jardim"
+                                data-price="133.00"> Instalação de Refletor de Jardim</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Refletor de Poste Comum"
+                                data-price="173.00"> Instalação de Refletor de Poste Comum</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Refletor de Poste com Lâmpada a Vapor" data-price="173.00">
+                            Instalação de Refletor de Poste com Lâmpada a Vapor</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Reator de Lâmpada a Vapor"
+                                data-price="105.50"> Instalação de Reator de Lâmpada a Vapor</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Fotocélula ou Sensor Presença" data-price="115.00"> Instalação de
+                            Fotocélula ou Sensor Presença</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Refletor LED + Fotocélula ou Sensor de Presença"
+                                data-price="105.00"> Instalação de Refletor LED + Fotocélula ou Sensor de
+                            Presença</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Luminária de Emergência de Sobrepor" data-price="115.00">
+                            Instalação de Luminária de Emergência de Sobrepor</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Luminária de Emergência de Embutir (caixinha 2x4)"
+                                data-price="88.00"> Instalação de Luminária de Emergência de Embutir (caixinha
+                            2x4)</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Perfil de LED (metro linear)"
+                                data-price="205.00"> Instalação de Perfil de LED (metro linear)</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Luminária Tubular ou Troca Reator ou LED" data-price="110.00">
+                            Instalação de Luminária Tubular ou Troca Reator ou LED</label>
+
+                        <!-- Ponto de Utilização -->
+                        <h4 class="service-category">Ponto de Utilização</h4>
+                        <label><input type="checkbox" name="services" value="Instalação de Tomada Simples"
+                                data-price="58.00"> Instalação de Tomada Simples</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Tomada Dupla"
+                                data-price="68.00"> Instalação de Tomada Dupla</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Tomada Tripla"
+                                data-price="80.00"> Instalação de Tomada Tripla</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Tomada de Piso e ou Telefone"
+                                data-price="80.00"> Instalação de Tomada de Piso e ou Telefone</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Tomada Industrial (3P+t)"
+                                data-price="128.00"> Instalação de Tomada Industrial (3P+t)</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Tomada de Sobrepor com Canaleta" data-price="80.00"> Instalação de
+                            Tomada de Sobrepor com Canaleta</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Chave de Bóia Superior e Inferior" data-price="155.00"> Instalação
+                            de Chave de Bóia Superior e Inferior</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Ventilador de Teto"
+                                data-price="180.00"> Instalação de Ventilador de Teto</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Ventilador de Parede"
+                                data-price="115.00"> Instalação de Ventilador de Parede</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Chuveiro Elétrico Simples"
+                                data-price="115.00"> Instalação de Chuveiro Elétrico Simples</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Chuveiro Luxo (Eletrônico, Pressurizado, Ducha)"
+                                data-price="170.00"> Instalação de Chuveiro Luxo</label>
+                        <label><input type="checkbox" name="services" value="Troca de Resistência de Chuveiro"
+                                data-price="103.00"> Troca de Resistência de Chuveiro</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Torneira Elétrica"
+                                data-price="113.00"> Instalação de Torneira Elétrica</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Campainha até 20 mts"
+                                data-price="90.00"> Instalação de Campainha até 20 mts</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Interfone 1 Chamada"
+                                data-price="200.00"> Instalação de Interfone 1 Chamada</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Interfone 2 Chamadas"
+                                data-price="195.00"> Instalação de Interfone 2 Chamadas</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Interfone 4 Chamadas"
+                                data-price="515.00"> Instalação de Interfone 4 Chamadas</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Vídeo Porteiro"
+                                data-price="218.00"> Instalação de Vídeo Porteiro</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Câmeras CFTV 1 Câmera Wi-Fi"
+                                data-price="190.00"> Instalação de Câmeras CFTV 1 Câmera Wi-Fi</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Câmeras CFTV 3 Câmeras Wi-Fi"
+                                data-price="430.00"> Instalação de Câmeras CFTV 3 Câmeras Wi-Fi</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Portão Eletrônico Deslizante"
+                                data-price="325.00"> Instalação de Portão Eletrônico Deslizante</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Portão Eletrônico Pivotante e/ou Basculante" data-price="585.00">
+                            Instalação de Portão Eletrônico Pivotante e/ou Basculante</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Botoeira para Fechadura Eletrônica" data-price="85.00"> Instalação
+                            de Botoeira para Fechadura Eletrônica</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Fechadura Eletrônica"
+                                data-price="185.00"> Instalação de Fechadura Eletrônica</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Exaustor Cozinha ou Banheiro"
+                                data-price="280.00"> Instalação de Exaustor Cozinha ou Banheiro</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Sistema de Alarme Residencial" data-price="1050.00"> Instalação de
+                            Sistema de Alarme Residencial</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Aquecedor Elétrico"
+                                data-price="2765.00"> Instalação de Aquecedor Elétrico</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Detector de Fumaça"
+                                data-price="1545.00"> Instalação de Detector de Fumaça</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Cerca Elétrica (por metro)"
+                                data-price="90.00"> Instalação de Cerca Elétrica (por metro)</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Nobreak" data-price="343.00">
+                            Instalação de Nobreak</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Aquecedor a Gás"
+                                data-price="400.00"> Instalação de Aquecedor a Gás</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Termostato ou Temporizador"
+                                data-price="128.00"> Instalação de Termostato ou Temporizador</label>
+
+                        <!-- Quadros de Distribuição / Painel -->
+                        <h4 class="service-category">Quadros de Distribuição / Painel</h4>
+                        <label><input type="checkbox" name="services" value="Substituição de Disjuntor Monofásico"
+                                data-price="70.00"> Substituição de Disjuntor Monofásico</label>
+                        <label><input type="checkbox" name="services" value="Substituição de Disjuntor Bifásico"
+                                data-price="90.00"> Substituição de Disjuntor Bifásico</label>
+                        <label><input type="checkbox" name="services" value="Substituição de Disjuntor Trifásico"
+                                data-price="115.00"> Substituição de Disjuntor Trifásico</label>
+                        <label><input type="checkbox" name="services" value="Instalação de IDR" data-price="160.00">
+                            Instalação de IDR (Diferencial Residual)</label>
+                        <label><input type="checkbox" name="services" value="Instalação de DPS" data-price="130.00">
+                            Instalação de DPS</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Barramento Pente Monopolar no QDC" data-price="80.00"> Instalação
+                            de Barramento Pente Monopolar no QDC</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Barramento Pente Bipolar no QDC" data-price="90.00"> Instalação de
+                            Barramento Pente Bipolar no QDC</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Barramento Pente Tripolar no QDC" data-price="100.00"> Instalação
+                            de Barramento Pente Tripolar no QDC</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Barramento de Neutro e/ou Terra" data-price="110.00"> Instalação de
+                            Barramento de Neutro e/ou Terra</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Haste Aterramento"
+                                data-price="350.00"> Instalação de Haste Aterramento</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Contator e/ou Relé Térmico"
+                                data-price="230.00"> Instalação de Contator e/ou Relé Térmico</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação e Montagem QDC (6 Circuitos + DR + DPS)" data-price="725.00">
+                            Instalação e Montagem QDC (6 Circuitos + DR + DPS)</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação e Montagem QDC (12 Circuitos + DR + DPS)" data-price="925.00">
+                            Instalação e Montagem QDC (12 Circuitos + DR + DPS)</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação e Montagem QDC (18 Circuitos + DR + DPS)" data-price="1250.00">
+                            Instalação e Montagem QDC (18 Circuitos + DR + DPS)</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação e Montagem QDC (24 Circuitos + DR + DPS)" data-price="2300.00">
+                            Instalação e Montagem QDC (24 Circuitos + DR + DPS)</label>
+
+                        <!-- Passagem de Cabos -->
+                        <h4 class="service-category">Passagem de Cabos</h4>
+                        <label><input type="checkbox" name="services" value="Entrada Monofásica (QM para QDC)"
+                                data-price="230.00"> Entrada Monofásica (QM para QDC)</label>
+                        <label><input type="checkbox" name="services"
+                                value="Entrada Bifásica ou Trifásica (QM para QDC)" data-price="280.00"> Entrada
+                            Bifásica ou Trifásica (QM para QDC)</label>
+                        <label><input type="checkbox" name="services" value="Alimentação para Motores"
+                                data-price="325.00"> Alimentação para Motores</label>
+
+                        <!-- Solução de Problemas Elétricos -->
+                        <h4 class="service-category">Solução de Problemas Elétricos</h4>
+                        <label><input type="checkbox" name="services" value="Curto Circuito Monofásico"
+                                data-price="400.00"> Curto Circuito Monofásico</label>
+                        <label><input type="checkbox" name="services" value="Curto Circuito Bifásico"
+                                data-price="600.00"> Curto Circuito Bifásico</label>
+                        <label><input type="checkbox" name="services" value="Curto Circuito Trifásico"
+                                data-price="800.00"> Curto Circuito Trifásico</label>
+
+                        <!-- Padrão de Entrada -->
+                        <h4 class="service-category">Padrão de Entrada</h4>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação de Medidor (Monofásico 127V ou 220V)" data-price="1500.00"> Instalação
+                            de Medidor (Monofásico 127V ou 220V)</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Medidor (Bifásico 220V)"
+                                data-price="1700.00"> Instalação de Medidor (Bifásico 220V)</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Medidor (Trifásico 220V)"
+                                data-price="2250.00"> Instalação de Medidor (Trifásico 220V)</label>
+
+                        <!-- Automação Residencial -->
+                        <h4 class="service-category">Automação Residencial</h4>
+                        <label><input type="checkbox" name="services" value="Instalação de Interruptor Inteligente"
+                                data-price="175.00"> Instalação de Interruptor Inteligente</label>
+                        <label><input type="checkbox" name="services" value="Instalação Mini Relé Interruptor"
+                                data-price="175.00"> Instalação Mini Relé Interruptor</label>
+                        <label><input type="checkbox" name="services" value="Instalação Relé de Impulso"
+                                data-price="250.00"> Instalação Relé de Impulso</label>
+                        <label><input type="checkbox" name="services" value="Instalação Relé Dimmer"
+                                data-price="250.00"> Instalação Relé Dimmer</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação e Configuração Controle Remoto Universal" data-price="130.00">
+                            Instalação e Configuração Controle Remoto Universal</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação e Configuração Assistente Virtual" data-price="250.00"> Instalação e
+                            Configuração Assistente Virtual</label>
+                        <label><input type="checkbox" name="services" value="Instalação de Tomada Inteligente"
+                                data-price="175.00"> Instalação de Tomada Inteligente</label>
+                        <label><input type="checkbox" name="services" value="Instalação Mini Relé Controle de Persiana"
+                                data-price="225.00"> Instalação Mini Relé Controle de Persiana</label>
+                        <label><input type="checkbox" name="services" value="Instalação e Configuração HUB"
+                                data-price="225.00"> Instalação e Configuração HUB</label>
+                        <label><input type="checkbox" name="services" value="Instalação e Configuração Roteador"
+                                data-price="250.00"> Instalação e Configuração Roteador</label>
+                        <label><input type="checkbox" name="services"
+                                value="Instalação e Configuração Fechadura Inteligente" data-price="325.00"> Instalação
+                            e Configuração Fechadura Inteligente</label>
+
+                        <!-- Carregador Veicular -->
+                        <h4 class="service-category">Carregador Veicular</h4>
+                        <label><input type="checkbox" name="services" value="Instalação Carregador Veicular"
+                                data-price="1500.00"> Instalação Carregador Veicular</label>
+                    </div>
+
+                    <div class="budget-summary">
+                        <span>Orçamento Estimado:</span>
+                        <strong id="totalPriceDisplay">R$ 0,00</strong>
+                    </div>
+                    <small class="budget-disclaimer">* Valores baseados na tabela média de referência de 2026. Não
+                        inclui materiais.</small>
                 </div>
 
                 <!-- Campo Mensagem -->
                 <div class="form-group">
                     <label for="message">Mensagem *</label>
-                    <textarea 
-                        id="message" 
-                        name="message" 
-                        placeholder="Descreva sua solicitação ou dúvida... (mínimo 10 caracteres)" 
-                        required
-                        minlength="10"
-                    ></textarea>
+                    <textarea id="message" name="message"
+                        placeholder="Descreva sua solicitação ou dúvida... (mínimo 10 caracteres)" required
+                        minlength="10"></textarea>
                 </div>
 
                 <!-- Botão Submit -->
-        
+
             </form>
             <div class="form-actions">
                 <button type="submit" class="form-submit">
                     <i class="fas fa-paper-plane"></i> Enviar Mensagem
                 </button>
 
-            <!-- Links diretos -->
-                <a href="https://wa.me/5561999999999?text=Olá%20TecVolt!%20Gostaria%20de%20mais%20informações." 
-               class="cta-button btn-whatsapp" 
-               target="_blank"
-               style="width: 100%; text-align: center; margin-bottom: 1rem;">
+                <!-- Links diretos -->
+                <a href="https://wa.me/5561999999999?text=Olá%20TecVolt!%20Gostaria%20de%20mais%20informações."
+                    class="cta-button btn-whatsapp" target="_blank"
+                    style="width: 100%; text-align: center; margin-bottom: 1rem;">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
 
-                <a href="tel:+5561999999999" 
-               class="cta-button secondary btn-call" 
-               style="width: 100%; text-align: center;">
+                <a href="tel:+5561999999999" class="cta-button secondary btn-call"
+                    style="width: 100%; text-align: center;">
                     <i class="fas fa-phone"></i> Ligar
                 </a>
             </div>
@@ -501,7 +746,8 @@
             <!-- Seção: Sobre -->
             <div class="footer-section">
                 <img src="assets/logo-tecvolt-120.png" alt="">
-                <p>Soluções elétricas profissionais com segurança, qualidade e garantia. Sua confiança é nossa prioridade.</p>
+                <p>Soluções elétricas profissionais com segurança, qualidade e garantia. Sua confiança é nossa
+                    prioridade.</p>
             </div>
 
             <!-- Seção: Links Rápidos -->
@@ -540,9 +786,9 @@
 
         <!-- Rodapé inferior -->
         <div class="footer-bottom">
-            <p>&copy; 2025 TecVolt. Todos os direitos reservados. | 
-               <a href="#" style="color: inherit;">Política de Privacidade</a> | 
-               <a href="#" style="color: inherit;">Termos de Serviço</a>
+            <p>&copy; 2025 TecVolt. Todos os direitos reservados. |
+                <a href="#" style="color: inherit;">Política de Privacidade</a> |
+                <a href="#" style="color: inherit;">Termos de Serviço</a>
             </p>
         </div>
     </footer>
@@ -552,12 +798,11 @@
          ============================================ -->
     <!-- AOS (Animate On Scroll) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
+
     <!-- Swiper JS (para futuras galerias) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
-
-

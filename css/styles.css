@@ -2,16 +2,26 @@
    VARIÁVEIS DE CORES E DESIGN SYSTEM
    ============================================ */
 :root {
-    --color-primary: #003d7a;           /* Azul marinho - confiança */
-    --color-primary-light: #0066cc;     /* Azul primário mais claro */
-    --color-secondary: #00bfff;         /* Ciano - destaques */
-    --color-accent: #ffa500;            /* Laranja suave - atenção */
-    --color-text: #1a1a1a;              /* Texto principal */
-    --color-text-light: #555;           /* Texto secundário */
-    --color-bg: #ffffff;                /* Fundo principal */
-    --color-bg-light: #f5f5f5;          /* Fundo claro */
-    --color-border: #e0e0e0;            /* Bordas */
-    --color-overlay: rgba(0, 61, 122, 0.85); /* Overlay escuro */
+    --color-primary: #003d7a;
+    /* Azul marinho - confiança */
+    --color-primary-light: #0066cc;
+    /* Azul primário mais claro */
+    --color-secondary: #00bfff;
+    /* Ciano - destaques */
+    --color-accent: #ffa500;
+    /* Laranja suave - atenção */
+    --color-text: #1a1a1a;
+    /* Texto principal */
+    --color-text-light: #555;
+    /* Texto secundário */
+    --color-bg: #ffffff;
+    /* Fundo principal */
+    --color-bg-light: #f5f5f5;
+    /* Fundo claro */
+    --color-border: #e0e0e0;
+    /* Bordas */
+    --color-overlay: rgba(0, 61, 122, 0.85);
+    /* Overlay escuro */
     --spacing-unit: 1rem;
     --transition: all 0.3s ease;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -74,7 +84,7 @@ body {
 
 .navbar-logo img {
     border-radius: 8px;
-    
+
 }
 
 .navbar-logo:hover {
@@ -112,11 +122,11 @@ body {
     width: 60%;
 }
 
-.navbar ul{
+.navbar ul {
     display: flex;
     align-items: center;
 }
- 
+
 
 /* Menu hambúrguer para mobile */
 .hamburger {
@@ -159,7 +169,7 @@ body {
 .hero {
     margin-top: 60px;
     min-height: 100vh;
-    background:url('../assets/hero-tecvolt.png') center/cover no-repeat;
+    background: url('../assets/hero-tecvolt.png') center/cover no-repeat;
     background-attachment: fixed;
     display: flex;
     align-items: center;
@@ -287,6 +297,7 @@ body {
     box-shadow: 0 10px 25px rgba(0, 191, 255, 0.3);
     text-decoration: none;
 }
+
 .btn-primary:hover {
     background: linear-gradient(135deg, #009acd, #00bfff);
     transform: translateY(-3px);
@@ -444,7 +455,7 @@ body {
 
 .differential-card p.text-justify {
     padding-top: 30px;
-    
+
 }
 
 /* ============================================
@@ -580,25 +591,25 @@ body {
     text-align: justify;
 }
 
-.modal-gallery{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:1rem;
-    margin-top:20px;
+.modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 20px;
 }
 
-.modal-gallery img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    border-radius:10px;
-    display:block;
-    transition:.3s ease;
-    cursor:pointer;
+.modal-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    transition: .3s ease;
+    cursor: pointer;
 }
 
-.modal-gallery img:hover{
-    transform:scale(1.03);
+.modal-gallery img:hover {
+    transform: scale(1.03);
 }
 
 /* ============================================
@@ -847,13 +858,15 @@ body {
 
 .form-actions {
     display: flex;
-    flex-direction: column; /* 🔥 mobile primeiro */
+    flex-direction: column;
+    /* 🔥 mobile primeiro */
     gap: 16px;
 }
 
 .form-actions button,
 .form-actions a {
-    width: 100%; /* 🔥 resolve alinhamento */
+    width: 100%;
+    /* 🔥 resolve alinhamento */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -863,6 +876,93 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     transform: translateY(-2px);
+}
+
+/* ============================================
+   ESTILOS DO ORÇAMENTO AUTOMÁTICO NO FORMULÁRIO
+   ============================================ */
+.service-selector-container {
+    background-color: var(--color-bg-light);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.services-checkbox-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.services-checkbox-grid label {
+    font-weight: normal;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+/* Estilos da barra de pesquisa de serviços */
+.service-search-input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.8rem;
+    margin-top: 0.3rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    background-color: #ffffff;
+}
+
+.service-search-input:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.1);
+}
+
+.services-checkbox-grid input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-secondary);
+    cursor: pointer;
+}
+
+.budget-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    border: 2px dashed var(--color-secondary);
+    margin-top: 0.5rem;
+}
+
+.budget-summary span {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.budget-summary strong {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+}
+
+.budget-disclaimer {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    margin-top: 0.3rem;
+    font-style: italic;
 }
 
 .form-submit {
@@ -876,8 +976,10 @@ body {
     background-color: var(--color-secondary);
     color: var(--color-primary);
     border: none;
-    align-self: center; /* centraliza */
+    align-self: center;
+    /* centraliza */
 }
+
 .btn-whatsapp:hover {
     background-color: var(--color-accent);
     color: #ffffff;
@@ -891,8 +993,10 @@ body {
     border: none;
     width: 100%;
     max-width: 250px;
-    align-self: center; /* centraliza */
+    align-self: center;
+    /* centraliza */
 }
+
 .btn-call:hover {
     background-color: var(--color-secondary);
     color: #ffffff;
@@ -984,6 +1088,7 @@ footer {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -994,6 +1099,7 @@ footer {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1005,6 +1111,7 @@ footer {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1016,6 +1123,7 @@ footer {
         opacity: 0;
         max-height: 0;
     }
+
     to {
         opacity: 1;
         max-height: 500px;
@@ -1026,6 +1134,7 @@ footer {
    RESPONSIVIDADE
    ============================================ */
 @media (max-width: 768px) {
+
     /* Navbar responsivo */
     .navbar-menu {
         display: none;
@@ -1101,22 +1210,23 @@ footer {
     .modal-gallery {
         grid-template-columns: 1fr;
     }
+
     .contact-btn {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
-    align-self: flex-start;
+        background-color: var(--color-secondary);
+        color: var(--color-primary);
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+        align-self: flex-start;
     }
 
     .contact-btn:hover {
-    background-color: var(--color-accent);
-    color: #ffffff;
-    transform: translateX(5px);
+        background-color: var(--color-accent);
+        color: #ffffff;
+        transform: translateX(5px);
     }
 
     .navbar-menu {
@@ -1141,9 +1251,10 @@ footer {
         display: flex;
         align-items: centerS;
     }
- 
+
     .form-actions {
-        flex-direction: column; /* 🔥 empilha */
+        flex-direction: column;
+        /* 🔥 empilha */
     }
 
     .form-actions button,
