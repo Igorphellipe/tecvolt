@@ -23,6 +23,7 @@ const navbarMenu = document.getElementById('navbarMenu');
 const navbar = document.getElementById('navbar');
 
 hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
     navbarMenu.classList.toggle('active');
 });
 
@@ -33,6 +34,7 @@ hamburger.addEventListener('click', () => {
 const navbarLinks = document.querySelectorAll('.navbar-menu a');
 navbarLinks.forEach(link => {
     link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
         navbarMenu.classList.remove('active');
     });
 });
@@ -64,41 +66,65 @@ function openServiceModal(serviceName) {
     const modal = document.getElementById('serviceModal');
     const titleEl = document.getElementById('modalServiceTitle');
     const descEl = document.getElementById('modalServiceDesc');
+    const galleryEl = document.getElementById('modalGallery'); 
 
     // Definições dos serviços (pode ser migrado para PHP/BD depois)
     const services = {
         'Manutenção Residencial': {
             title: 'Manutenção Elétrica Residencial',
-            desc: 'Oferecemos inspeção completa e manutenção de instalações elétricas residenciais. Nosso serviço inclui diagnóstico de problemas, substituição de componentes defeituosos e adequação às normas de segurança. Garantimos que sua residência está protegida contra riscos elétricos.'
+            desc: 'Oferecemos inspeção completa e manutenção de instalações elétricas residenciais. Nosso serviço inclui diagnóstico de problemas, substituição de componentes defeituosos e adequação às normas de segurança. Garantimos que sua residência está protegida contra riscos elétricos.',
+            images: ["./assets/servicos/residencial/android-chrome-300x300.png", "./assets/servicos/residencial/android-chrome-300x300.png","./assets/servicos/residencial/android-chrome-300x300.png","./assets/servicos/residencial/android-chrome-300x300.png",]
         },
         'Manutenção Comercial': {
             title: 'Manutenção Elétrica Comercial',
-            desc: 'Solução completa de manutenção para estabelecimentos comerciais. Evitamos interrupções operacionais e garantimos conformidade com regulamentações. Oferecemos planos de manutenção preventiva e suporte 24/7 em emergências.'
+            desc: 'Solução completa de manutenção para estabelecimentos comerciais. Evitamos interrupções operacionais e garantimos conformidade com regulamentações. Oferecemos planos de manutenção preventiva e suporte 24/7 em emergências.',
+            images: ["./assets/servicos/comercial/android-chrome-300x300.png", "./assets/servicos/comercial/android-chrome-300x300.png", "./assets/servicos/comercial/android-chrome-300x300.png", "./assets/servicos/comercial/android-chrome-300x300.png"]
         },
         'Manutenção Industrial': {
             title: 'Manutenção Elétrica Industrial',
-            desc: 'Especialista em soluções elétrica para ambientes industriais com alta demanda. Realizamos manutenção preventiva, diagnósticos avançados e adequação às normas de segurança internacionais. Minimizamos paradas operacionais e maximizamos eficiência.'
+            desc: 'Especialista em soluções elétrica para ambientes industriais com alta demanda. Realizamos manutenção preventiva, diagnósticos avançados e adequação às normas de segurança internacionais. Minimizamos paradas operacionais e maximizamos eficiência.',
+            images: ["./assets/servicos/industrial/android-chrome-300x300.png", "./assets/servicos/industrial/android-chrome-300x300.png", "./assets/servicos/industrial/android-chrome-300x300.png", "./assets/servicos/industrial/android-chrome-300x300.png"]
         },
         'Instalação Elétrica': {
             title: 'Instalação Elétrica Completa',
-            desc: 'Executamos instalações elétricas completas desde o planejamento até a execução. Trabalhamos com materiais de qualidade e respeito total às normas técnicas NBR. Ideal para construções novas ou reformas.'
+            desc: 'Executamos instalações elétricas completas desde o planejamento até a execução. Trabalhamos com materiais de qualidade e respeito total às normas técnicas NBR. Ideal para construções novas ou reformas.',
+            images: ["./assets/servicos/eletrica/android-chrome-300x300.png", "./assets/servicos/eletrica/android-chrome-300x300.png", "./assets/servicos/eletrica/android-chrome-300x300.png", "./assets/servicos/eletrica/android-chrome-300x300.png"]
         },
         'Quadros Elétricos': {
             title: 'Montagem de Quadros Elétricos',
-            desc: 'Projetamos, confeccionamos e instalamos quadros elétricos personalizados para suas necessidades. Utilizamos componentes de primeira qualidade e garantimos funcionamento seguro e eficiente.'
+            desc: 'Projetamos, confeccionamos e instalamos quadros elétricos personalizados para suas necessidades. Utilizamos componentes de primeira qualidade e garantimos funcionamento seguro e eficiente.',
+            images: ["./assets/servicos/quadros/android-chrome-300x300.png", "./assets/servicos/quadros/android-chrome-300x300.png", "./assets/servicos/quadros/android-chrome-300x300.png", "./assets/servicos/quadros/android-chrome-300x300.png"]
         },
         'Conformidade': {
             title: 'Segurança e Conformidade Técnica',
-            desc: 'Realizamos inspeções técnicas completas, emitimos laudos de segurança e adequamos instalações às normas NBR vigentes. Garantimos segurança total contra riscos elétricos e conformidade com regulamentações.'
+            desc: 'Realizamos inspeções técnicas completas, emitimos laudos de segurança e adequamos instalações às normas NBR vigentes. Garantimos segurança total contra riscos elétricos e conformidade com regulamentações.',
+            images: ["./assets/servicos/conformidade/android-chrome-300x300.png", "./assets/servicos/conformidade/android-chrome-300x300.png", "./assets/servicos/conformidade/android-chrome-300x300.png", "./assets/servicos/conformidade/android-chrome-300x300.png"]
         }
     };
 
     const service = services[serviceName] || services['Manutenção Residencial'];
     titleEl.textContent = service.title;
     descEl.textContent = service.desc;
+    if (service.images) {
+
+    galleryEl.innerHTML = "";
+    console.log(service.images);
+
+    service.images.forEach(image => {
+        console.log(image);
+
+        const img = document.createElement("img");
+
+            img.src = image;
+
+            galleryEl.appendChild(img);
+
+        });
+
+    }
+
     modal.classList.add('active');
 }
-
 /**
  * Fecha o modal de serviços
  * Clica fora do modal também fecha
