@@ -111,6 +111,11 @@ body {
 .navbar-menu a:hover::after {
     width: 60%;
 }
+
+.navbar ul{
+    display: flex;
+    align-items: center;
+}
  
 
 /* Menu hambúrguer para mobile */
