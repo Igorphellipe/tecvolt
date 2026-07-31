@@ -102,6 +102,12 @@ body.menu-open {
     transform: scale(1.05);
 }
 
+.navbar-logo:focus,
+.navbar-logo:active {
+    border: none;
+    outline: none;
+}
+
 .navbar-menu {
     display: flex;
     gap: 2rem;
