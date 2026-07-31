@@ -48,7 +48,7 @@
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#manutencao">Manutenção</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><button class="contact-btn" onclick="openContactModal()"> <i class="fas fa-envelope"></i> Contato
+            <li><button type="button" class="contact-btn" onclick="openContactModal()"> <i class="fas fa-file-signature"></i> Solicitar Orçamento
                 </button></li>
         </ul>
 
@@ -69,12 +69,8 @@
             <h1>Serviços Elétricos Profissionais com Segurança e Qualidade</h1>
             <p>Confie nos especialistas da TecVolt para manutenção, instalação e conformidade técnica</p>
             <div class="cta-group">
-                <a href="https://wa.me/5561999999999?text=Olá%20TecVolt!%20Gostaria%20de%20solicitar%20um%20orçamento."
-                    class="btn-primary" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Solicitar Orçamento no WhatsApp
-                </a>
-                <button class="btn-secondary" onclick="openContactModal()">
-                    <i class="fas fa-envelope"></i> Enviar Mensagem
+                <button type="button" class="btn-primary" onclick="openContactModal()">
+                    <i class="fas fa-file-signature"></i> Solicitar Orçamento
                 </button>
             </div>
         </div>
@@ -167,7 +163,7 @@
                 <div class="service-image">
                     <img src="assets/manutencao-residencial.png" alt="Manutenção Elétrica Residencial">
                 </div>
-                <button class="service-btn" onclick="openServiceModal('Manutenção Residencial')">Saiba Mais</button>
+                <button type="button" class="service-btn" onclick="openServiceModal('Manutenção Residencial')">Saiba Mais</button>
             </div>
 
             <!-- Serviço 2: Manutenção Comercial -->
@@ -175,7 +171,7 @@
                 <div class="service-image">
                     <img src="assets/manutencao-comercial.png" alt="Manutenção Elétrica Comercial">
                 </div>
-                <button class="service-btn" onclick="openServiceModal('Manutenção Comercial')">Saiba Mais</button>
+                <button type="button" class="service-btn" onclick="openServiceModal('Manutenção Comercial')">Saiba Mais</button>
             </div>
 
             <!-- Serviço 3: Manutenção Industrial -->
@@ -183,7 +179,7 @@
                 <div class="service-image">
                     <img src="assets/manutencao-industrial.png" alt="Manutenção Elétrica Industrial">
                 </div>
-                <button class="service-btn" onclick="openServiceModal('Manutenção Industrial')">Saiba Mais</button>
+                <button type="button" class="service-btn" onclick="openServiceModal('Manutenção Industrial')">Saiba Mais</button>
             </div>
 
             <!-- Serviço 4: Instalação Elétrica -->
@@ -191,7 +187,7 @@
                 <div class="service-image">
                     <img src="assets/instalacao-completa.png" alt="Instalação Elétrica">
                 </div>
-                <button class="service-btn" onclick="openServiceModal('Instalação Elétrica')">Saiba Mais</button>
+                <button type="button" class="service-btn" onclick="openServiceModal('Instalação Elétrica')">Saiba Mais</button>
             </div>
 
             <!-- Serviço 5: Quadros Elétricos -->
@@ -199,7 +195,7 @@
                 <div class="service-image">
                     <img src="assets/montagem-quadros.png" alt="Montagem de Quadros Elétricos">
                 </div>
-                <button class="service-btn" onclick="openServiceModal('Quadros Elétricos')">Saiba Mais</button>
+                <button type="button" class="service-btn" onclick="openServiceModal('Quadros Elétricos')">Saiba Mais</button>
             </div>
 
             <!-- Serviço 6: Conformidade Técnica -->
@@ -207,7 +203,7 @@
                 <div class="service-image">
                     <img src="assets/seguranca-e-conformidade.png" alt="Segurança e Conformidade Técnica">
                 </div>
-                <button class="service-btn" onclick="openServiceModal('Conformidade')">Saiba Mais</button>
+                <button type="button" class="service-btn" onclick="openServiceModal('Conformidade')">Saiba Mais</button>
             </div>
         </div>
     </section>
@@ -215,7 +211,8 @@
     <!-- ============================================
          MODAL SERVIÇOS - Detalhes ao clicar
          ============================================ -->
-    <div id="serviceModal" class="modal">
+    <div id="serviceModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="modalServiceTitle">
         <div class="modal-content">
             <button class="modal-close" onclick="closeServiceModal()">&times;</button>
             <h2 class="modal-title" id="modalServiceTitle">Título do Serviço</h2>
@@ -227,7 +224,7 @@
 
             </div>
 
-            <button class="cta-button" onclick="openContactModal(); closeServiceModal();"
+            <button type="button" class="cta-button" onclick="openContactModalFromService()"
                 style="width: 100%; margin-top: 1rem;">
                 Solicitar Orçamento
             </button>
@@ -435,13 +432,13 @@
     <!-- ============================================
          MODAL CONTATO - Formulário principal
          ============================================ -->
-    <div id="contactModal" class="modal">
+    <div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="contactModalTitle">
         <div class="modal-content">
             <button class="modal-close" onclick="closeContactModal()">&times;</button>
-            <h2 class="modal-title">Entre em Contato</h2>
+            <h2 class="modal-title" id="contactModalTitle">Solicite seu Orçamento</h2>
             <p style="color: var(--color-text-light); margin-bottom: 1.5rem;">
                 Preencha o formulário abaixo e nossa equipe entrará em contato em breve.
-                Para atendimento imediato, utilize nosso WhatsApp.
             </p>
 
             <form class="contact-form" onsubmit="handleFormSubmit(event)">
@@ -715,26 +712,12 @@
                         minlength="10"></textarea>
                 </div>
 
-                <!-- Botão Submit -->
-
+                <div class="form-actions">
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                    </button>
+                </div>
             </form>
-            <div class="form-actions">
-                <button type="submit" class="form-submit">
-                    <i class="fas fa-paper-plane"></i> Enviar Mensagem
-                </button>
-
-                <!-- Links diretos -->
-                <a href="https://wa.me/5561999999999?text=Olá%20TecVolt!%20Gostaria%20de%20mais%20informações."
-                    class="cta-button btn-whatsapp" target="_blank"
-                    style="width: 100%; text-align: center; margin-bottom: 1rem;">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-
-                <a href="tel:+5561999999999" class="cta-button secondary btn-call"
-                    style="width: 100%; text-align: center;">
-                    <i class="fas fa-phone"></i> Ligar
-                </a>
-            </div>
         </div>
     </div>
 
@@ -764,7 +747,6 @@
             <div class="footer-section">
                 <h4>Contato</h4>
                 <p><i class="fas fa-phone"></i> (61) 9999-9999</p>
-                <p><i class="fas fa-envelope"></i> contato@tecvolt.com.br</p>
                 <p><i class="fas fa-map-marker-alt"></i> Brasília, DF</p>
                 <div class="social-links">
                     <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>

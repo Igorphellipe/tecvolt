@@ -1,5 +1,7 @@
-// AOS Init
-AOS.init({ duration: 1000, easing: 'ease-in-out', once: false, mirror: true, offset: 100 });
+// AOS Init (o site continua funcional caso a biblioteca externa não carregue)
+if (window.AOS) {
+    AOS.init({ duration: 1000, easing: 'ease-in-out', once: false, mirror: true, offset: 100 });
+}
 
 // Navbar toggles
 const hamburger = document.getElementById('hamburger');
@@ -9,13 +11,39 @@ const navbar = document.getElementById('navbar');
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navbarMenu.classList.toggle('active');
+    const isOpen = navbarMenu.classList.contains('active');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
 });
 
-document.querySelectorAll('.navbar-menu a').forEach(link => {
+document.querySelectorAll('.navbar-menu a, .navbar-menu button').forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navbarMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
     });
+});
+
+hamburger.setAttribute('role', 'button');
+hamburger.setAttribute('tabindex', '0');
+hamburger.setAttribute('aria-label', 'Abrir menu de navegação');
+hamburger.setAttribute('aria-controls', 'navbarMenu');
+hamburger.setAttribute('aria-expanded', 'false');
+hamburger.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        hamburger.click();
+    }
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        navbarMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+    }
 });
 
 window.addEventListener('scroll', () => {
@@ -23,25 +51,136 @@ window.addEventListener('scroll', () => {
     else navbar.classList.remove('scrolled');
 });
 
+// Conteúdo dos modais de serviço
+const serviceDetails = {
+    'Manutenção Residencial': {
+        description: 'Inspeção, diagnóstico e correção de falhas em instalações residenciais. Atuamos em tomadas, iluminação, chuveiros, disjuntores, aterramento e dispositivos de proteção, sempre com foco na segurança da sua família.',
+        images: [
+            'assets/manutencao-residencial.png',
+            'assets/instalacao-completa.png',
+            'assets/montagem-quadros.png',
+            'assets/seguranca-e-conformidade.png'
+        ]
+    },
+    'Manutenção Comercial': {
+        description: 'Manutenção preventiva e corretiva para lojas, escritórios e condomínios, reduzindo paradas e riscos. Avaliamos circuitos, iluminação, quadros, cargas e pontos de consumo conforme a operação do negócio.',
+        images: [
+            'assets/manutencao-comercial.png',
+            'assets/instalacao-completa.png',
+            'assets/montagem-quadros.png',
+            'assets/seguranca-e-conformidade.png'
+        ]
+    },
+    'Manutenção Industrial': {
+        description: 'Soluções para instalações e equipamentos industriais, com diagnóstico técnico, manutenção de painéis e circuitos de potência e ações preventivas para aumentar a confiabilidade da operação.',
+        images: [
+            'assets/manutencao-industrial.png',
+            'assets/montagem-quadros.png',
+            'assets/instalacao-completa.png',
+            'assets/seguranca-e-conformidade.png'
+        ]
+    },
+    'Instalação Elétrica': {
+        description: 'Projetos e instalações elétricas completas para obras novas, reformas e ampliações. Executamos o dimensionamento e a distribuição dos circuitos com organização, eficiência e conformidade técnica.',
+        images: [
+            'assets/instalacao-completa.png',
+            'assets/manutencao-residencial.png',
+            'assets/manutencao-comercial.png',
+            'assets/montagem-quadros.png'
+        ]
+    },
+    'Quadros Elétricos': {
+        description: 'Montagem, organização e adequação de quadros de distribuição e painéis elétricos. Instalamos e dimensionamos disjuntores, DR, DPS, barramentos e identificações para uma proteção eficiente.',
+        images: [
+            'assets/montagem-quadros.png',
+            'assets/instalacao-completa.png',
+            'assets/manutencao-comercial.png',
+            'assets/manutencao-industrial.png'
+        ]
+    },
+    'Conformidade': {
+        description: 'Inspeção das instalações, identificação de riscos e adequações às normas técnicas aplicáveis. Entregamos uma avaliação clara das não conformidades e das melhorias recomendadas.',
+        images: [
+            'assets/seguranca-e-conformidade.png',
+            'assets/montagem-quadros.png',
+            'assets/manutencao-residencial.png',
+            'assets/manutencao-industrial.png'
+        ]
+    }
+};
+
+let selectedServiceName = '';
+
 // Modals
 function openServiceModal(serviceName) {
     const modal = document.getElementById('serviceModal');
     const titleEl = document.getElementById('modalServiceTitle');
     const descEl = document.getElementById('modalServiceDesc');
+    const galleryEl = document.getElementById('modalGallery');
+    const details = serviceDetails[serviceName];
+
+    if (!modal || !titleEl || !descEl || !galleryEl || !details) return;
+
+    selectedServiceName = serviceName;
     titleEl.textContent = serviceName;
-    descEl.textContent = "Oferecemos inspeção completa, diagnóstico e adequação às normas de segurança da sua instalação.";
+    descEl.textContent = details.description;
+    galleryEl.replaceChildren(...details.images.map((src, index) => {
+        const image = document.createElement('img');
+        image.src = src;
+        image.alt = `${serviceName} - imagem ${index + 1}`;
+        image.loading = 'lazy';
+        return image;
+    }));
     modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
 }
 
-function closeServiceModal() { document.getElementById('serviceModal').classList.remove('active'); }
-function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
-function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
+function closeServiceModal() {
+    const modal = document.getElementById('serviceModal');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    if (!document.querySelector('.modal.active')) document.body.classList.remove('modal-open');
+}
+
+function openContactModal() {
+    const modal = document.getElementById('contactModal');
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+}
+
+function openContactModalFromService() {
+    const message = document.getElementById('message');
+    closeServiceModal();
+    openContactModal();
+    if (message && selectedServiceName && !message.value.trim()) {
+        message.value = `Gostaria de solicitar um orçamento para: ${selectedServiceName}.`;
+    }
+}
+
+function closeContactModal() {
+    const modal = document.getElementById('contactModal');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    if (!document.querySelector('.modal.active')) document.body.classList.remove('modal-open');
+}
 
 document.addEventListener('click', (event) => {
     const serviceModal = document.getElementById('serviceModal');
     const contactModal = document.getElementById('contactModal');
     if (event.target === serviceModal) closeServiceModal();
     if (event.target === contactModal) closeContactModal();
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    closeServiceModal();
+    closeContactModal();
+    hamburger.classList.remove('active');
+    navbarMenu.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
 });
 
 // Accordion
@@ -315,9 +454,22 @@ window.handleFormSubmit = function (event) {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        if (href !== '#' && href !== '#!' && document.querySelector(href)) {
-            e.preventDefault();
-            window.scrollTo({ top: document.querySelector(href).offsetTop - 100, behavior: 'smooth' });
-        }
+        if (href === '#' || href === '#!') return;
+
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        e.preventDefault();
+        const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 0;
+        const safetySpacing = 16;
+        const targetPosition = target.getBoundingClientRect().top
+            + window.scrollY
+            - navbarHeight
+            - safetySpacing;
+
+        window.scrollTo({
+            top: Math.max(0, targetPosition),
+            behavior: 'smooth'
+        });
     });
 });
