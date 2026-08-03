@@ -8,50 +8,54 @@ const hamburger = document.getElementById('hamburger');
 const navbarMenu = document.getElementById('navbarMenu');
 const navbar = document.getElementById('navbar');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navbarMenu.classList.toggle('active');
-    const isOpen = navbarMenu.classList.contains('active');
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    document.body.classList.toggle('menu-open', isOpen);
-});
-
-document.querySelectorAll('.navbar-menu a, .navbar-menu button').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navbarMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
+if (hamburger && navbarMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navbarMenu.classList.toggle('active');
+        const isOpen = navbarMenu.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('menu-open', isOpen);
     });
-});
 
-hamburger.setAttribute('role', 'button');
-hamburger.setAttribute('tabindex', '0');
-hamburger.setAttribute('aria-label', 'Abrir menu de navegação');
-hamburger.setAttribute('aria-controls', 'navbarMenu');
-hamburger.setAttribute('aria-expanded', 'false');
-hamburger.addEventListener('keydown', event => {
-    if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        hamburger.click();
-    }
-});
+    document.querySelectorAll('.navbar-menu a, .navbar-menu button').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navbarMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        });
+    });
 
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        hamburger.classList.remove('active');
-        navbarMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
-    }
-});
+    hamburger.setAttribute('role', 'button');
+    hamburger.setAttribute('tabindex', '0');
+    hamburger.setAttribute('aria-label', 'Abrir menu de navegacao');
+    hamburger.setAttribute('aria-controls', 'navbarMenu');
+    hamburger.setAttribute('aria-expanded', 'false');
+
+    hamburger.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            hamburger.click();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navbarMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        }
+    });
+}
 
 window.addEventListener('scroll', () => {
+    if (!navbar) return;
     if (window.scrollY > 100) navbar.classList.add('scrolled');
     else navbar.classList.remove('scrolled');
 });
 
-// Conteúdo dos modais de serviço
+// Conteudo dos modais de servico
 const serviceDetails = {
     'Manutenção Residencial': {
         description: 'Inspeção, diagnóstico e correção de falhas em instalações residenciais. Atuamos em tomadas, iluminação, chuveiros, disjuntores, aterramento e dispositivos de proteção, sempre com foco na segurança da sua família.',
@@ -111,7 +115,6 @@ const serviceDetails = {
 
 let selectedServiceName = '';
 
-// Modals
 function openServiceModal(serviceName) {
     const modal = document.getElementById('serviceModal');
     const titleEl = document.getElementById('modalServiceTitle');
@@ -124,6 +127,7 @@ function openServiceModal(serviceName) {
     selectedServiceName = serviceName;
     titleEl.textContent = serviceName;
     descEl.textContent = details.description;
+
     galleryEl.replaceChildren(...details.images.map((src, index) => {
         const image = document.createElement('img');
         image.src = src;
@@ -131,6 +135,7 @@ function openServiceModal(serviceName) {
         image.loading = 'lazy';
         return image;
     }));
+
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
@@ -138,6 +143,7 @@ function openServiceModal(serviceName) {
 
 function closeServiceModal() {
     const modal = document.getElementById('serviceModal');
+    if (!modal) return;
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     if (!document.querySelector('.modal.active')) document.body.classList.remove('modal-open');
@@ -145,9 +151,11 @@ function closeServiceModal() {
 
 function openContactModal() {
     const modal = document.getElementById('contactModal');
+    if (!modal) return;
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
+    calculateEstimatedTotal();
 }
 
 function openContactModalFromService() {
@@ -155,12 +163,13 @@ function openContactModalFromService() {
     closeServiceModal();
     openContactModal();
     if (message && selectedServiceName && !message.value.trim()) {
-        message.value = `Gostaria de solicitar um orçamento para: ${selectedServiceName}.`;
+        message.value = `Gostaria de solicitar um orcamento para: ${selectedServiceName}.`;
     }
 }
 
 function closeContactModal() {
     const modal = document.getElementById('contactModal');
+    if (!modal) return;
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     if (!document.querySelector('.modal.active')) document.body.classList.remove('modal-open');
@@ -177,25 +186,29 @@ document.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;
     closeServiceModal();
     closeContactModal();
-    hamburger.classList.remove('active');
-    navbarMenu.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
+    if (hamburger && navbarMenu) {
+        hamburger.classList.remove('active');
+        navbarMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+    }
 });
 
-// Accordion
 function setupAccordion() {
     document.querySelectorAll('.accordion-item, .faq-item').forEach(item => {
         const header = item.querySelector('.accordion-header, .faq-question');
-        if (header) {
-            header.addEventListener('click', () => {
-                const container = item.parentElement;
-                container.querySelectorAll('.accordion-item.active, .faq-item.active').forEach(active => {
-                    if (active !== item) active.classList.remove('active');
-                });
-                item.classList.toggle('active');
+        if (!header) return;
+
+        header.addEventListener('click', () => {
+            const container = item.parentElement;
+            if (!container) return;
+
+            container.querySelectorAll('.accordion-item.active, .faq-item.active').forEach(active => {
+                if (active !== item) active.classList.remove('active');
             });
-        }
+
+            item.classList.toggle('active');
+        });
     });
 }
 
@@ -228,9 +241,9 @@ function setupServiceCategoryDropdowns() {
             if (activeGroup && activeGroup !== group) {
                 const activeButton = activeGroup.querySelector('.service-category-toggle');
                 const activePanel = activeGroup.querySelector('.service-category-panel');
-                activeButton.setAttribute('aria-expanded', 'false');
+                if (activeButton) activeButton.setAttribute('aria-expanded', 'false');
                 activeGroup.classList.remove('active');
-                activePanel.style.maxHeight = '0px';
+                if (activePanel) activePanel.style.maxHeight = '0px';
             }
 
             const shouldOpen = !isOpen;
@@ -256,99 +269,241 @@ function setupServiceCategoryDropdowns() {
         if (child.tagName === 'H4' && child.classList.contains('service-category')) {
             if (currentGroup) groups.push(currentGroup);
             currentGroup = createGroup(child.textContent.trim());
-        } else if (currentGroup) {
-            currentGroup.panel.appendChild(child);
+            return;
         }
+
+        if (currentGroup) currentGroup.panel.appendChild(child);
     });
 
     if (currentGroup) groups.push(currentGroup);
-
     if (groups.length === 0) return;
 
     container.innerHTML = '';
     groups.forEach(({ group }) => container.appendChild(group));
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    setupAccordion();
-    setupServiceCategoryDropdowns();
-});
+function setupServiceQuantityControls() {
+    const serviceLabels = document.querySelectorAll('#servicesGrid label');
 
-function calculateEstimatedTotal() {
-    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
-    let total = 0;
-    let selectedServices = [];
+    serviceLabels.forEach(label => {
+        const checkbox = label.querySelector('input[name="services"]');
+        if (!checkbox || label.dataset.qtySetup === 'true') return;
 
-    checkboxes.forEach(cb => {
-        total += parseFloat(cb.getAttribute('data-price'));
-        selectedServices.push(cb.value);
+        const serviceName = checkbox.value;
+        const main = document.createElement('span');
+        main.className = 'service-option-main';
+
+        const title = document.createElement('span');
+        title.className = 'service-option-title';
+        title.textContent = serviceName;
+
+        const qtyControl = document.createElement('span');
+        qtyControl.className = 'service-qty-control';
+
+        const decreaseBtn = document.createElement('button');
+        decreaseBtn.type = 'button';
+        decreaseBtn.className = 'service-qty-btn';
+        decreaseBtn.setAttribute('aria-label', `Diminuir quantidade de ${serviceName}`);
+        decreaseBtn.textContent = '-';
+
+        const qtyInput = document.createElement('input');
+        qtyInput.type = 'number';
+        qtyInput.className = 'service-qty-input';
+        qtyInput.min = '0';
+        qtyInput.max = '99';
+        qtyInput.value = checkbox.checked ? '1' : '0';
+        qtyInput.setAttribute('aria-label', `Quantidade de ${serviceName}`);
+
+        const increaseBtn = document.createElement('button');
+        increaseBtn.type = 'button';
+        increaseBtn.className = 'service-qty-btn';
+        increaseBtn.setAttribute('aria-label', `Aumentar quantidade de ${serviceName}`);
+        increaseBtn.textContent = '+';
+
+        const syncFromQty = () => {
+            let qty = parseInt(qtyInput.value, 10);
+            if (Number.isNaN(qty) || qty < 0) qty = 0;
+            if (qty > 99) qty = 99;
+
+            qtyInput.value = String(qty);
+            checkbox.checked = qty > 0;
+            checkbox.dataset.quantity = String(qty);
+            calculateEstimatedTotal();
+        };
+
+        const syncFromCheckbox = () => {
+            const currentQty = parseInt(qtyInput.value, 10) || 0;
+            if (checkbox.checked && currentQty === 0) {
+                qtyInput.value = '1';
+            }
+            if (!checkbox.checked) {
+                qtyInput.value = '0';
+            }
+            checkbox.dataset.quantity = qtyInput.value;
+            calculateEstimatedTotal();
+        };
+
+        decreaseBtn.addEventListener('click', event => {
+            event.preventDefault();
+            const currentQty = parseInt(qtyInput.value, 10) || 0;
+            qtyInput.value = String(Math.max(0, currentQty - 1));
+            syncFromQty();
+        });
+
+        increaseBtn.addEventListener('click', event => {
+            event.preventDefault();
+            const currentQty = parseInt(qtyInput.value, 10) || 0;
+            qtyInput.value = String(Math.min(99, currentQty + 1));
+            syncFromQty();
+        });
+
+        qtyInput.addEventListener('input', () => {
+            syncFromQty();
+        });
+
+        checkbox.addEventListener('change', () => {
+            syncFromCheckbox();
+        });
+
+        checkbox.dataset.quantity = qtyInput.value;
+
+        main.appendChild(checkbox);
+        main.appendChild(title);
+
+        qtyControl.appendChild(decreaseBtn);
+        qtyControl.appendChild(qtyInput);
+        qtyControl.appendChild(increaseBtn);
+
+        label.innerHTML = '';
+        label.appendChild(main);
+        label.appendChild(qtyControl);
+        label.dataset.qtySetup = 'true';
     });
-
-    // Update UI Display
-    const formattedTotal = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    document.getElementById('totalPriceDisplay').innerText = formattedTotal;
-
-    // Update WhatsApp Link
-    updateWhatsAppLink(formattedTotal, selectedServices);
 }
 
-function updateWhatsAppLink(formattedTotal, selectedServices) {
-    const waBtn = document.getElementById('btn-whatsapp-modal');
-    let baseText = "Olá TecVolt! Gostaria de solicitar um orçamento.";
+function getSelectedServiceItems() {
+    const checkboxes = document.querySelectorAll('input[name="services"]');
+    const selected = [];
 
-    if (selectedServices.length > 0) {
-        baseText += `\n\n*Serviços Desejados:* \n- ${selectedServices.join('\n- ')}`;
-        baseText += `\n\n*Estimativa da Tabela:* ${formattedTotal}`;
+    checkboxes.forEach(checkbox => {
+        const qty = parseInt(checkbox.dataset.quantity || '0', 10);
+        if (!checkbox.checked || qty <= 0) return;
+
+        const price = parseFloat(checkbox.getAttribute('data-price')) || 0;
+        selected.push({
+            name: checkbox.value,
+            quantity: qty,
+            unitPrice: price,
+            subtotal: price * qty
+        });
+    });
+
+    return selected;
+}
+
+function calculateEstimatedTotal() {
+    const selectedItems = getSelectedServiceItems();
+    const total = selectedItems.reduce((acc, item) => acc + item.subtotal, 0);
+
+    const formattedTotal = total.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
+    const totalDisplay = document.getElementById('totalPriceDisplay');
+    if (totalDisplay) totalDisplay.innerText = formattedTotal;
+
+    updateWhatsAppLink(formattedTotal, selectedItems);
+}
+
+function updateWhatsAppLink(formattedTotal, selectedItems) {
+    const waBtn = document.getElementById('btn-whatsapp-modal');
+    if (!waBtn) return;
+
+    const name = document.getElementById('name') ? document.getElementById('name').value.trim() : '';
+    const phone = document.getElementById('phone') ? document.getElementById('phone').value.trim() : '';
+    const email = document.getElementById('email') ? document.getElementById('email').value.trim() : '';
+    const userMessage = document.getElementById('message') ? document.getElementById('message').value.trim() : '';
+
+    let baseText = 'Ola TecVolt! Gostaria de solicitar um orcamento.';
+
+    if (name) baseText += `\n\n*Nome:* ${name}`;
+    if (phone) baseText += `\n*Telefone:* ${phone}`;
+    if (email) baseText += `\n*E-mail:* ${email}`;
+
+    if (selectedItems.length > 0) {
+        const lines = selectedItems.map(item => {
+            return `- ${item.name} | Qtd: ${item.quantity}`;
+        });
+
+        baseText += `\n\n*Servicos desejados:*\n${lines.join('\n')}`;
     }
+
+    if (userMessage) baseText += `\n\n*Mensagem:* ${userMessage}`;
 
     waBtn.href = `https://wa.me/5561999999999?text=${encodeURIComponent(baseText)}`;
 }
 
-// Add listeners to checkboxes
-document.querySelectorAll('input[name="services"]').forEach(cb => {
-    cb.addEventListener('change', calculateEstimatedTotal);
-});
-
 function handleFormSubmit(event) {
     event.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const message = document.getElementById('message').value.trim();
 
-    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
-    let selectedServices = [];
-    checkboxes.forEach(cb => selectedServices.push(cb.value));
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
 
-    const total = document.getElementById('totalPriceDisplay').innerText;
+    const name = nameInput ? nameInput.value.trim() : '';
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const message = messageInput ? messageInput.value.trim() : '';
 
-    if (!name || !phone) {
-        alert('Por favor, preencha os campos obrigatórios!');
+    if (!name || !phone || !email) {
+        alert('Por favor, preencha os campos obrigatorios.');
         return;
     }
 
-    console.log("=== NOVA SOLICITAÇÃO DE ORÇAMENTO ===");
-    console.log("Nome:", name, "| Telefone:", phone);
-    console.log("Serviços:", selectedServices.length ? selectedServices.join(', ') : "Nenhum selecionado diretamente");
-    console.log("Valor Estimado:", total);
-    console.log("Mensagem:", message);
+    const selectedItems = getSelectedServiceItems();
+    const total = document.getElementById('totalPriceDisplay')
+        ? document.getElementById('totalPriceDisplay').innerText
+        : 'R$ 0,00';
 
-    alert(`Obrigado, ${name}! Sua solicitação de orçamento (Estimativa: ${total}) foi recebida. Entraremos em contato no número ${phone} em breve!`);
-    document.querySelector('.contact-form').reset();
-    calculateEstimatedTotal(); // Reset Total
+    console.log('=== NOVA SOLICITACAO DE ORCAMENTO ===');
+    console.log('Nome:', name, '| Telefone:', phone, '| E-mail:', email);
+    console.log(
+        'Servicos:',
+        selectedItems.length
+            ? selectedItems.map(item => `${item.name} (Qtd: ${item.quantity})`).join(', ')
+            : 'Nenhum selecionado diretamente'
+    );
+    console.log('Valor Estimado:', total);
+    console.log('Mensagem:', message);
+
+    alert(`Obrigado, ${name}! Sua solicitacao de orcamento (Estimativa: ${total}) foi recebida.`);
+
+    const form = document.querySelector('.contact-form');
+    if (form) form.reset();
+
+    document.querySelectorAll('input[name="services"]').forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.dataset.quantity = '0';
+    });
+
+    document.querySelectorAll('.service-qty-input').forEach(input => {
+        input.value = '0';
+    });
+
+    calculateEstimatedTotal();
     closeContactModal();
 }
 
 function formatPhone(phoneInput) {
     let phone = phoneInput.value.replace(/\D/g, '');
     if (phone.length > 11) phone = phone.substring(0, 11);
-    if (phone.length > 7) phone = phone.substring(0, 5) + '-' + phone.substring(5);
-    if (phone.length > 5) phone = '(' + phone.substring(0, 2) + ') ' + phone.substring(2);
+    if (phone.length > 7) phone = `${phone.substring(0, 5)}-${phone.substring(5)}`;
+    if (phone.length > 5) phone = `(${phone.substring(0, 2)}) ${phone.substring(2)}`;
     phoneInput.value = phone;
 }
 
-// ============================================
-//   PESQUISA/FILTRO DE SERVIÇOS NO MODAL
-// ============================================
 function filterServices() {
     const input = document.getElementById('serviceSearch');
     const grid = document.getElementById('servicesGrid');
@@ -364,7 +519,9 @@ function filterServices() {
 
         if (!filter) {
             group.style.display = 'block';
-            labels.forEach(label => label.style.display = 'flex');
+            labels.forEach(label => {
+                label.style.display = 'flex';
+            });
             group.classList.remove('active');
             if (panel) panel.style.maxHeight = '0px';
             return;
@@ -383,73 +540,20 @@ function filterServices() {
     });
 }
 
-// ============================================
-//   CÁLCULO AUTOMÁTICO DE ORÇAMENTO
-// ============================================
-function calculateEstimatedTotal() {
-    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
-    let total = 0;
-    let selectedServices = [];
-
-    checkboxes.forEach(cb => {
-        total += parseFloat(cb.getAttribute('data-price'));
-        selectedServices.push(cb.value);
-    });
-
-    // Atualiza o display do valor total na tela
-    const formattedTotal = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const totalDisplay = document.getElementById('totalPriceDisplay');
-    if (totalDisplay) {
-        totalDisplay.innerText = formattedTotal;
-    }
-
-    // Atualiza também o link do WhatsApp para incluir os serviços e o orçamento estimado
-    updateWhatsAppLink(selectedServices);
-}
-
-function updateWhatsAppLink(selectedServices) {
-    const waBtn = document.querySelector('.btn-whatsapp');
-    if (!waBtn) return;
-
-    let baseText = "Olá TecVolt! Gostaria de solicitar um orçamento.";
-
-    if (selectedServices.length > 0) {
-        baseText += `\n\n*Serviços Desejados:* \n- ${selectedServices.join('\n- ')}`;
-    }
-
-    waBtn.href = `https://wa.me/5561999999999?text=${encodeURIComponent(baseText)}`;
-}
-
-// Adiciona o evento de escuta a todos os checkboxes de serviços
-document.querySelectorAll('input[name="services"]').forEach(cb => {
-    cb.addEventListener('change', calculateEstimatedTotal);
-});
-
-// Modifique também a função handleFormSubmit existente para registrar os serviços no console/alerta se necessário:
-const originalHandleFormSubmit = window.handleFormSubmit;
-window.handleFormSubmit = function (event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-
-    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
-    let selectedServices = [];
-    checkboxes.forEach(cb => selectedServices.push(cb.value));
-
-    const total = document.getElementById('totalPriceDisplay') ? document.getElementById('totalPriceDisplay').innerText : "R$ 0,00";
-
-    if (!name || !phone) {
-        alert('Por favor, preencha os campos obrigatórios!');
-        return;
-    }
-
-    alert(`Obrigado, ${name}! Sua solicitação de orçamento (Estimativa: ${total}) foi recebida. Entraremos em contato em breve!`);
-
-    // Reseta o formulário e os checkboxes
-    document.querySelector('.contact-form').reset();
+window.addEventListener('DOMContentLoaded', () => {
+    setupAccordion();
+    setupServiceCategoryDropdowns();
+    setupServiceQuantityControls();
     calculateEstimatedTotal();
-    closeContactModal();
-};
+
+    ['name', 'phone', 'email', 'message'].forEach(id => {
+        const field = document.getElementById(id);
+        if (!field) return;
+        field.addEventListener('input', () => {
+            calculateEstimatedTotal();
+        });
+    });
+});
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -462,10 +566,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 0;
         const safetySpacing = 16;
-        const targetPosition = target.getBoundingClientRect().top
-            + window.scrollY
-            - navbarHeight
-            - safetySpacing;
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight - safetySpacing;
 
         window.scrollTo({
             top: Math.max(0, targetPosition),

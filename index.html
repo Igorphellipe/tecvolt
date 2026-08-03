@@ -452,7 +452,7 @@
                 <div class="form-group">
                     <label for="phone">Telefone/WhatsApp *</label>
                     <input type="tel" id="phone" name="phone" placeholder="(61) 99999-9999" required
-                        pattern="[0-9\-\+\(\) ]+">
+                        pattern="[0-9\-\+\(\) ]+" oninput="formatPhone(this)">
                 </div>
 
                 <!-- Campo Email -->
@@ -713,6 +713,10 @@
                 </div>
 
                 <div class="form-actions">
+                    <a id="btn-whatsapp-modal" class="btn-whatsapp" href="https://wa.me/5561999999999" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
+                    </a>
                     <button type="submit" class="form-submit">
                         <i class="fas fa-paper-plane"></i> Enviar Solicitação
                     </button>
