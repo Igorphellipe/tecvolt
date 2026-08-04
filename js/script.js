@@ -173,6 +173,7 @@ function closeContactModal() {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     if (!document.querySelector('.modal.active')) document.body.classList.remove('modal-open');
+    resetContactForm();
 }
 
 document.addEventListener('click', (event) => {
@@ -441,45 +442,10 @@ function updateWhatsAppLink(formattedTotal, selectedItems) {
 
     if (userMessage) baseText += `\n\n*Mensagem:* ${userMessage}`;
 
-    waBtn.href = `https://wa.me/5561999999999?text=${encodeURIComponent(baseText)}`;
+    waBtn.dataset.whatsappUrl = `https://wa.me/5561999999999?text=${encodeURIComponent(baseText)}`;
 }
 
-function handleFormSubmit(event) {
-    event.preventDefault();
-
-    const nameInput = document.getElementById('name');
-    const phoneInput = document.getElementById('phone');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-
-    const name = nameInput ? nameInput.value.trim() : '';
-    const phone = phoneInput ? phoneInput.value.trim() : '';
-    const email = emailInput ? emailInput.value.trim() : '';
-    const message = messageInput ? messageInput.value.trim() : '';
-
-    if (!name || !phone || !email) {
-        alert('Por favor, preencha os campos obrigatorios.');
-        return;
-    }
-
-    const selectedItems = getSelectedServiceItems();
-    const total = document.getElementById('totalPriceDisplay')
-        ? document.getElementById('totalPriceDisplay').innerText
-        : 'R$ 0,00';
-
-    console.log('=== NOVA SOLICITACAO DE ORCAMENTO ===');
-    console.log('Nome:', name, '| Telefone:', phone, '| E-mail:', email);
-    console.log(
-        'Servicos:',
-        selectedItems.length
-            ? selectedItems.map(item => `${item.name} (Qtd: ${item.quantity})`).join(', ')
-            : 'Nenhum selecionado diretamente'
-    );
-    console.log('Valor Estimado:', total);
-    console.log('Mensagem:', message);
-
-    alert(`Obrigado, ${name}! Sua solicitacao de orcamento (Estimativa: ${total}) foi recebida.`);
-
+function resetContactForm() {
     const form = document.querySelector('.contact-form');
     if (form) form.reset();
 
@@ -493,6 +459,17 @@ function handleFormSubmit(event) {
     });
 
     calculateEstimatedTotal();
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+    calculateEstimatedTotal();
+
+    const waBtn = document.getElementById('btn-whatsapp-modal');
+    if (waBtn && waBtn.dataset.whatsappUrl) {
+        window.open(waBtn.dataset.whatsappUrl, '_blank', 'noopener,noreferrer');
+    }
+
     closeContactModal();
 }
 

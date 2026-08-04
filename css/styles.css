@@ -568,6 +568,40 @@ body.menu-open {
     justify-content: center;
 }
 
+/* Transição suave dos modais */
+#contactModal,
+#serviceModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+}
+
+#contactModal.active,
+#serviceModal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+}
+
+#contactModal .modal-content,
+#serviceModal .modal-content {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+    animation: none;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+#contactModal.active .modal-content,
+#serviceModal.active .modal-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
 .modal-content {
     background-color: #ffffff;
     border-radius: 15px;
@@ -1124,6 +1158,7 @@ body.menu-open {
     background-color: var(--color-secondary);
     color: var(--color-primary);
     border: none;
+    cursor: pointer;
     align-self: center;
     /* centraliza */
 }
@@ -1452,4 +1487,10 @@ button:focus,
 a:focus {
     outline: 2px solid var(--color-secondary);
     outline-offset: 2px;
+}
+
+/* Evita a borda de foco após clique, mantendo-a para navegação por teclado */
+.modal-close:focus:not(:focus-visible),
+.contact-btn:focus:not(:focus-visible) {
+    outline: none;
 }
